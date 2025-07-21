@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>silvermoth</title>
+  <link rel="shortcut icon" type="image/gif" href="">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+
+  <link rel="stylesheet" href="home.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <script>
+    const quotes = [
+      "tomorrow holds what today can’t break",
+      "burn slow, shine long",
+      "in the static, i found peace",
+      "lonely stars still glow",
+      "silence is a song too",
+      "the moth never regrets the flame",
+      "lost, but not forgotten",
+      "there's a light that never goes out",
+      "broken wings still fly",
+      "nothing stays, everything changes",
+      "never stay where you aren't happy",
+      "everything heals with time"
+    ];
+
+    window.currentQuote = quotes[Math.floor(Math.random() * quotes.length)];
+
+    function updateClock() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const mins = String(now.getMinutes()).padStart(2, '0');
+      const secs = String(now.getSeconds()).padStart(2, '0');
+
+      const output = `☆ : ${window.currentQuote} ┃ ${year}/${month}/${day} (☆) ${hours}:${mins}:${secs} ID:A/n9sT0mX `;
+      document.getElementById("datetime").innerText = output;
+    }
+
+    window.onload = function() {
+      updateClock();
+      setInterval(updateClock, 1000);
+    };
+
+    // Mobile redirect script (unchanged)
+    if(navigator.userAgent.match(/Mobile|Windows Phone|Lumia|Android|iPhone|iPod|Blackberry|PlayBook|BB10|Opera Mini|\bCrMo\/|Opera Mobi/i) ){
+      location.replace("silvermoth/mobile.html");
+    }
+  </script>
+</head>
+
+<body oncontextmenu="return false" ondragstart="return false">
+  <div id="everything">
+    <div class="scanlines"></div>
+    <div id="teste"></div>
+    <div class="container1">
+      <div class="overallheader">
+        
+      </div>
+      <div class="container2">
+        <div class="container2text" id="datetime">
+        </div>
+      </div>
+      <div class="header">
+        silvermoth
+      </div>
+      <div class="header2">
+        unfiltered thoughts of mine
+      </div>
+      <div class="container3">
+        <div class="directions">
+            <div class="homepage">
+                home
+            </div>
+            <div class="contact">
+                <a href="contact.html">
+                    contact
+                </a>
+            </div>
+        </div>
+        <div class="searchbar">
+            <div class="searchbartext">
+                this will lead you nowhere
+            </div>
+        </div>
+        <div class="searchgo">
+            go
+        </div>
+      </div>
+           <div class="footer">
+    created by 
+    <a href="https://www.tiktok.com/@jnkgrls" target="_blank" style="text-decoration: underline;">jnkgrls</a> all rights reserved 
+  </div>
+  <div class="container1deco">
+    <div class="about">
+        silvermoth is my own little corner of the web. created with entirely html, css and javascript. we are currently very small, but there is opportunity to expand in the future.
+    </div>
+    <div class="deco2">
+    </div>
+    </div>
+    <div class="taskbar"></div>
+</div>
+</body>
+</html>

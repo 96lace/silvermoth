@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>silvermoth</title>
+
+
+   <script>
+  const oneHour = 60 * 60 * 1000;
+  const visitedTimestamp = localStorage.getItem("visitedTimestamp");
+
+  if (visitedTimestamp && (Date.now() - parseInt(visitedTimestamp) < oneHour)) {
+    // Within cooldown period — skip bootup
+    window.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("splash-screen")?.remove();
+      document.getElementById("bootup-container").style.display = "none";
+      document.getElementById("everything").style.display = "block";
+      document.body.style.background = "white";
+      document.body.style.color = "black";
+    });
+  } else {
+    // Not visited or cooldown expired — show bootup and reset timestamp
+    localStorage.setItem("visitedTimestamp", Date.now().toString());
+  }
+</script>
+
+  <link rel="stylesheet" href="bootup.css" />
+  <link id="themeStylesheet" rel="stylesheet" href="dark.css">
+  <link rel="shortcut icon" href="" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet" />
+
+  <script>
+    // Quote and clock logic
+    const quotes = [
+      "tomorrow holds what today can’t break",
+      "burn slow, shine long",
+      "in the static, i found peace",
+      "lonely stars still glow",
+      "silence is a song too",
+      "the moth never regrets the flame",
+      "lost, but not forgotten",
+      "there's a light that never goes out",
+      "broken wings still fly",
+      "nothing stays, everything changes",
+      "never stay where you aren't happy",
+      "everything heals with time"
+    ];
+    window.currentQuote = quotes[Math.floor(Math.random() * quotes.length)];
+
+    function updateClock() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const mins = String(now.getMinutes()).padStart(2, '0');
+      const secs = String(now.getSeconds()).padStart(2, '0');
+
+      const output = `☆ : ${window.currentQuote} ┃ ${year}/${month}/${day} (☆) ${hours}:${mins}:${secs} ID:A/n9sT0mX `;
+      const dt = document.getElementById("datetime");
+      if (dt) dt.innerText = output;
+    }
+
+    window.onload = function () {
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      // Mobile redirect
+      if (navigator.userAgent.match(/Mobile|Windows Phone|Lumia|Android|iPhone|iPod|Blackberry|PlayBook|BB10|Opera Mini|\bCrMo\/|Opera Mobi/i)) {
+        location.replace("silvermoth/mobile.html");
+      }
+    };
+  </script>
+  <script src="https://iframe.chat/scripts/main.min.js"></script>
+</head>
+
+<body oncontextmenu="return false" ondragstart="return false";">
+  <!-- Fullscreen Popup -->
+  <div id="fullscreen-modal">
+    <div class="scanlines"></div>
+    <div id="fullscreen-dialog">
+      <div id="header1"></div>
+      <div id="modal-header">hello ☺</div>
+      <div id="modal-body">would you like to go fullscreen? we recommend it!</div>
+      <div id="modal-buttons">
+        <button id="yes-btn">yes</button>
+        <button id="no-btn">no</button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="error-sound" src="error.mp3" preload="auto"></audio>
+  <audio id="loadup-sound" src="https://files.catbox.moe/3i6vtk.mp3" preload="auto"></audio>
+  <audio id="enter-sound" src="https://files.catbox.moe/okhmjw.mp3" preload="auto"></audio>
+
+  <!-- Splash Screen -->
+  <div id="splash-screen">
+    <div class="scanlines"></div>
+    <img src="https://files.catbox.moe/b38bwd.gif" id="splash-logo" alt="Silvermoth OS" />
+    <div id="splash-loading-text">Loading Silvermoth OS...</div>
+    <div id="progress-container">
+      <div id="progress-bar"></div>
+    </div>
+  </div>
+
+  <!-- Bootup Text -->
+  <div id="bootup-container" style="display: none;">
+    <div class="scanlines"></div>
+    <pre id="bootup-text"></pre>
+    <span id="bootup-cursor">┃</span>
+  </div>
+  
+  <!--Pick Theme-->
+ 
+  <!-- Home Page Content -->
+  <div id="everything" style="display: none;">
+
+    <div id="themeModal" class="theme-modal">
+    <div class="theme-box">
+      <p>would you like to switch to light mode?</p>
+      <button onclick="setTheme('light')">yes</button>
+      <button onclick="setTheme('dark')">no</button>
+    </div>
+  </div>
+
+    <div id="homepage-scanlines"></div>
+   <div id="background-image-light">
+    <img src="https://i.pinimg.com/1200x/dd/0e/c4/dd0ec421552be8130f4fb098505e4f19.jpg">
+  </div>
+
+  <div id="background-image-dark">
+    <img src="https://i.pinimg.com/1200x/d8/af/02/d8af02e13531c274db6eb7d192a3623d.jpg">
+  </div>
+    <div id="teste"></div>
+    <div class="window" id="widget1">
+  <div class="window-header" id="drag-bar">
+    <span class="window-title">~ terminal v0.93
+      <img src="https://files.catbox.moe/rxri4b.gif" id="terminalgif">
+    </span>
+    <button class="window-close" onclick="closeWindow('widget1')">×</button>
+  </div>
+
+  <div class="window-content">
+    <div class="overallheader">
+      </div>
+      <div class="container2">
+        <div class="container2text" id="datetime"></div>
+      </div>
+      <div class="header">silvermoth</div>
+      <div class="header2">secluded corner of the web</div>
+      <div class="container3">
+        <div class="directions">
+            <div class="homepage tab-btn active" onclick="switchTab('home')">home</div>
+            <div class="contact tab-btn" onclick="switchTab('contact')">contact</div>
+        </div>
+        <div class="searchbar">
+          <div class="searchbartext">this will lead you nowhere</div>
+        </div>
+        <div class="searchgo">go</div>
+      </div>
+      <div class="footer">
+        created by 
+        <a href="https://www.tiktok.com/@jnkgrls" target="_blank" style="text-decoration: underline;" id="footerlink">jnkgrls</a> all rights reserved 
+      </div>
+      <div class="container1deco">
+            <div class="deco2"></div>
+        <div class="tab-content" id="tab-home">
+        <div class="about">
+          silvermoth is my own little corner of the web. coded with entirely html, css and javascript. we are currently very small, but there is opportunity to expand in the future.
+          <br><br> feel free to look around. the goal is to make this site as interactive as possible! ☆ 
+        </div>
+      </div>
+      </div>
+
+      <div class="tab-content" id="tab-contact" style="display: none;">
+      <div class="contact-info">
+        <div class="links111">
+        <a href="https://www.tiktok.com/@jnkgrls" target="_blank" id="tiktok">
+          >tiktok (most active)
+        </a>
+        <br>
+        <a href="https://uk.pinterest.com/jnkgrls/" target="_blank" id="pinterest">
+          >pinterest
+        </a>
+         <br>
+        <a href="https://www.instagram.com/jnkgrls" target="_blank" id="instagram">
+          >instagram
+        </a>
+         <br>
+        <a href="https://open.spotify.com/user/31lwffdhd5o42alhfrackgzphsy4"target="_blank" id="instagram">
+          >spotify
+        </a>
+        </div>
+    </div>
+    </div>
+
+      <div class="taskbar">
+          <img src="https://files.catbox.moe/t9n3s9.gif" id="mothbutton">
+        <div class="powerbutton">
+        </div>
+        <div class="terminalbutton">
+          terminal ☆
+        </div>
+        <div class="notepadbutton">
+          notepad ☆
+        </div>
+         <div class="chatboxbutton">
+          chatbox ☆
+        </div>
+        <div class="creditsbutton">
+          credits ☆
+        </div>
+         <div class="musicbutton">
+          music ☆
+        </div>
+         <div id="theme-toggle" style="position: absolute; margin-left: 2450px; z-index: 50;">
+            <img id="sun-btn" src="https://files.catbox.moe/altuc2.png" alt="Switch to light mode" style="width: 32px; cursor: pointer; display: none; filter:brightness(3)">
+            <img id="moon-btn" src="https://files.catbox.moe/r3blgb.png" alt="Switch to dark mode" style="width: 32px; cursor: pointer; display: none; filter:brightness(.8)">
+          </div>
+        <div class="dividerpart">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="homepageapps">
+    <div class="homelabels">
+      <p id="terminalapp1">
+        terminal v.093
+      </p>
+       <p id="notepadapp1">
+        notepad
+      </p>
+      <p id="chatboxapp1">
+        chatroom
+      </p>
+      <p id="creditapp1">
+        credits
+      </p>
+      <p id="musicapp1">
+        music
+      </p>
+    </div>
+    <div class="terminalapp">
+      <img src="https://files.catbox.moe/kj48uq.png">
+    </div>
+    <div class="noteapp">
+      <img src="https://files.catbox.moe/it5xq5.png">
+    </div>
+     <div class="chatboxapp">
+      <img src="https://files.catbox.moe/l6b5s1.png">
+    </div>
+    <div class="creditapp">
+      <img src="https://files.catbox.moe/e64f3s.png">
+    </div>
+    <div class="musicapp">
+      <img src="https://files.catbox.moe/w5pbop.png">
+    </div>
+  </div>
+  <div class="window" id="widget2" style="position: absolute; top: 350px; left: 720px;">
+  <div class="window-header" id="drag-bar-2">
+    <span class="window-title"> notepad
+      <img src="https://files.catbox.moe/x4stqk.gif" id="notepadgif">
+    </span>
+    <button class="window-close" onclick="closeWindow('widget2')">×</button>
+  </div>
+  <div class="window-content">
+     <div id="notepadcontrols">
+        <p id="file" style="display: inline">file</p>
+        <p id="edit" style="display: inline">edit</p>
+        <p id="view" style="display: inline">view</p>
+        <p id="format" style="display: inline">format</p>
+      </div>
+    <div class="notepadwindow">
+     
+      <div id="to-dolist">
+        to-do ☆
+      </div>
+        <div id="todo2" class="todo2">
+          - finish website
+          <br>
+          - revamp ig account
+          <br>
+          - try out fl studio
+        </div>
+    </div>
+  </div>
+</div>
+<div class="window" id="widget3" style="position: absolute; top: 450px; left: 1730px;">
+  <div class="window-header">
+    <span class="window-title">chatroom
+       <img src="https://files.catbox.moe/f2p0pi.gif" id="chatboxgif">
+    </span>
+    <button class="window-close" onclick="closeWindow('widget3')">×</button>
+  </div>
+  <div class="window-content">
+    <iframe src="https://www5.cbox.ws/box/?boxid=957829&boxtag=pWYuWv" width="260" height="340" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto" id="chatbox"></iframe>	
+    <script>
+  chattable.initialize({
+    stylesheet : "chattable.css"
+  });
+</script>
+  </div>
+</div>
+<div class="window" id="widget4" style="position: absolute; top: 630px; left: 830px;">
+  <div class="window-header">
+    <span class="window-title">credits
+       <img src="https://files.catbox.moe/8nblw4.gif" id="creditgif">
+    </span>
+    <button class="window-close" onclick="closeWindow('widget4')">×</button>
+  </div>
+  <div class="window-content">
+    <div class="credits111">
+      all code, 3d models created solely by jnkgrls. inspo taken from 
+      various neocities/old websites.
+      <br> any sound used from <a href="https://freesound.org/" target="_blank" id="freesound">freesound.org</a> under creative commons license.
+      <br> website is completely non-profit.
+    </div>
+  </div>
+</div>
+<div class="window" id="widget5" style="position: absolute; top: 730px; left: 1180px;">
+  <div class="window-header">
+    <span class="window-title">music
+      <img src="https://files.catbox.moe/0rnunk.gif" id="musicgif">
+    </span>
+    <button class="window-close" onclick="closeWindow('widget5')">×</button>
+  </div>
+  <div class="window-content">
+    <div class="musicspotify">
+      <iframe data-testid="embed-iframe" style="border-radius:5px" src="https://open.spotify.com/embed/playlist/1jXOFPJfYtirMiW1P1cGay?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
+  </div>
+
+  
+
+
+
+  <!--WidgetDrag-->
+  <script>
+  // Close button functionality
+  function closeWindow(id) {
+  }
+
+  // Drag functionality
+  function makeDraggable(elem, handle) {
+    let offsetX = 0, offsetY = 0, isDragging = false;
+
+    const dragMouseDown = (e) => {
+      e.preventDefault();
+      offsetX = e.clientX - elem.offsetLeft;
+      offsetY = e.clientY - elem.offsetTop;
+      isDragging = true;
+      document.addEventListener('mousemove', elementDrag);
+      document.addEventListener('mouseup', closeDragElement);
+    };
+
+    const elementDrag = (e) => {
+      if (!isDragging) return;
+      elem.style.left = e.clientX - offsetX + 'px';
+      elem.style.top = e.clientY - offsetY + 'px';
+    };
+
+    const closeDragElement = () => {
+      isDragging = false;
+      document.removeEventListener('mousemove', elementDrag);
+      document.removeEventListener('mouseup', closeDragElement);
+    };
+
+    handle.addEventListener('mousedown', dragMouseDown);
+  }
+
+  // Initialize when DOM is ready
+  window.addEventListener('DOMContentLoaded', () => {
+    const widget = document.getElementById('widget1');
+    const header = widget.querySelector('.window-header');
+    makeDraggable(widget, header);
+  });
+
+  window.addEventListener('DOMContentLoaded', () => {
+  const widget2 = document.getElementById('widget2');
+  const header2 = widget2.querySelector('.window-header');
+  makeDraggable(widget2, header2);
+
+  });
+
+  window.addEventListener('DOMContentLoaded', () => {
+  const widget3 = document.getElementById('widget3');
+  const header3 = widget3.querySelector('.window-header');
+  makeDraggable(widget3, header3);
+
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  const widget3 = document.getElementById('widget4');
+  const header3 = widget3.querySelector('.window-header');
+  makeDraggable(widget3, header3);
+
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  const widget3 = document.getElementById('widget5');
+  const header3 = widget3.querySelector('.window-header');
+  makeDraggable(widget3, header3);
+
+});
+</script>
+
+  <!-- Bootup Script -->
+  <script>
+    const modal = document.getElementById("fullscreen-modal");
+    const dialog = document.getElementById("fullscreen-dialog");
+    const yesBtn = document.getElementById("yes-btn");
+    const noBtn = document.getElementById("no-btn");
+    const enterSound = document.getElementById("enter-sound");
+    const errorSound = document.getElementById("error-sound");
+    const loadupSound = document.getElementById("loadup-sound");
+
+    modal.addEventListener("click", (e) => {
+      if (!dialog.contains(e.target)) {
+        errorSound.currentTime = 0;
+        errorSound.play().catch(() => {});
+        dialog.style.transition = "transform 0.1s";
+        dialog.style.transform = "translateX(-5px)";
+        setTimeout(() => dialog.style.transform = "translateX(5px)", 50);
+        setTimeout(() => dialog.style.transform = "translateX(0)", 100);
+      }
+    });
+
+    dialog.addEventListener("click", (e) => e.stopPropagation());
+
+    function startSequence() {
+      startSplash(startBootSequence);
+    }
+
+    yesBtn.addEventListener("click", () => {
+      enterSound.currentTime = 0;
+      enterSound.play();
+      setTimeout(() => {
+        document.documentElement.requestFullscreen?.();
+        modal.remove();
+        startSequence();
+      }, 2000);
+    });
+
+    noBtn.addEventListener("click", () => {
+      enterSound.currentTime = 0;
+      enterSound.play();
+      setTimeout(() => {
+        modal.remove();
+        startSequence();
+      }, 2000);
+    });
+
+    let isDragging = false, offsetX = 0, offsetY = 0;
+    dialog.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      offsetX = e.clientX - dialog.offsetLeft;
+      offsetY = e.clientY - dialog.offsetTop;
+    });
+    document.addEventListener("mousemove", (e) => {
+      if (isDragging) {
+        dialog.style.left = e.clientX - offsetX + "px";
+        dialog.style.top = e.clientY - offsetY + "px";
+      }
+    });
+    document.addEventListener("mouseup", () => isDragging = false);
+
+    function startSplash(callback) {
+      const splash = document.getElementById("splash-screen");
+      const progressBar = document.getElementById("progress-bar");
+      splash.style.display = "flex";
+      splash.style.opacity = "1";
+      loadupSound.currentTime = 0;
+      loadupSound.play().catch(() => {});
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.random() * 2 + 0.5;
+        progress = Math.min(progress, 100);
+        progressBar.style.width = progress + "%";
+        if (progress >= 100) {
+          clearInterval(interval);
+          splash.style.transition = "opacity 1s ease";
+          splash.style.opacity = "0";
+          setTimeout(() => {
+            splash.style.display = "none";
+            if (typeof callback === "function") callback();
+          }, 1000);
+        }
+      }, 120);
+    }
+
+    function startBootSequence() {
+      const lines = [
+        { text: "[ SILVERMOTH SYSTEM BOOTING... ]", color: "#4037f2", pause: 1000 },
+        { text: "Memory check: OK", color: "#e537f2", pause: 600 },
+        { text: "CPU: Cybersynth 8080X @ 3.50GHz", color: "#FFAA00", pause: 700 },
+        { text: "Detecting drives...", color: "#888", pause: 1000 },
+        { text: "Drive 0: quantum_moth.sys", color: "#f2374d", pause: 500 },
+        { text: "Drive 1: void_vault.img", color: "#f28537", pause: 500 },
+        { text: "Loading kernel: mothcore-0.9.3...", color: "#f2cf37", pause: 900 },
+        { text: "Initializing I/O subsystems...", color: "#ccc", pause: 900 },
+        { text: "[ Press any key to continue ]", color: "#37f23d" }
+      ];
+
+      const el = document.getElementById("bootup-text");
+      const cursor = document.getElementById("bootup-cursor");
+      const container = document.getElementById("bootup-container");
+
+      el.innerHTML = "";
+      container.style.display = "block";
+
+      let idx = 0;
+
+      function typeLine(line, cb) {
+        const div = document.createElement("div");
+        div.style.color = line.color || "#ccc";
+        el.appendChild(div);
+        let i = 0;
+        function step() {
+          if (i < line.text.length) {
+            div.textContent += line.text[i++];
+            setTimeout(step, 35 + Math.random() * 20);
+          } else {
+            setTimeout(cb, line.pause || 800);
+          }
+        }
+        step();
+      }
+
+      function nextLine() {
+        if (idx < lines.length) {
+          typeLine(lines[idx], nextLine);
+          idx++;
+        } else {
+          cursor.style.display = "inline";
+          cursor.style.animation = "blink 1s step-start infinite";
+         document.addEventListener("keydown", () => {
+        document.body.classList.add("fade-out");
+
+        setTimeout(() => {
+            document.getElementById("bootup-container").style.display = "none";
+            document.getElementById("everything").style.display = "block";
+
+            // RESET background and text color for homepage
+            document.body.style.background = "none";
+            document.body.style.backgroundImage = "none";
+            document.body.style.color = "black";
+        }, 1000);
+        }, { once: true });
+        }
+      }
+
+      nextLine();
+    }
+  </script>
+
+
+  <script>
+function setTheme(mode) {
+  const themeLink = document.getElementById('themeStylesheet');
+  const lightBg = document.getElementById('background-image-light');
+  const darkBg = document.getElementById('background-image-dark');
+  const sunBtn = document.getElementById('sun-btn');
+  const moonBtn = document.getElementById('moon-btn');
+
+  if (mode === 'light') {
+    themeLink.href = 'home.css';
+    lightBg.style.display = 'block';
+    sunBtn.style.display = 'none';
+    darkBg.style.display = 'none';
+    moonBtn.style.display = 'inline';
+  } else {
+    themeLink.href = 'dark.css';
+    lightBg.style.display = 'none';
+    darkBg.style.display = 'block';
+    sunBtn.style.display = 'inline';
+    moonBtn.style.display = 'none';
+  }
+
+  localStorage.setItem('theme', mode);
+  document.getElementById('themeModal').style.display = 'none';
+}
+
+// Show popup only on first visit or if no theme selected
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme');
+  const themeLink = document.getElementById('themeStylesheet');
+  const lightBg = document.getElementById('background-image-light');
+  const darkBg = document.getElementById('background-image-dark');
+
+  if (savedTheme) {
+    if (savedTheme === 'light') {
+      themeLink.href = 'home.css';
+      lightBg.style.display = 'block';
+      darkBg.style.display = 'none';
+    } else {
+      themeLink.href = 'dark.css';
+      lightBg.style.display = 'none';
+      darkBg.style.display = 'block';
+    }
+  } else {
+    setTimeout(() => {
+      document.getElementById('themeModal').style.display = 'flex';
+    }, 1500);
+  }
+});
+</script>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme');
+  const themeLink = document.getElementById('themeStylesheet');
+  const sunBtn = document.getElementById('sun-btn');
+  const moonBtn = document.getElementById('moon-btn');
+
+  // Set initial theme from localStorage
+  if (savedTheme === 'dark') {
+    themeLink.href = 'dark.css';
+    sunBtn.style.display = 'inline';
+    moonBtn.style.display = 'none';
+  } else {
+    themeLink.href = 'home.css';
+    sunBtn.style.display = 'none';
+    moonBtn.style.display = 'inline';
+  }
+
+  // Show modal if no theme selected yet
+  if (!savedTheme) {
+    setTimeout(() => {
+      document.getElementById('themeModal').style.display = 'flex';
+    }, 1500);
+  }
+
+  // Toggle theme via buttons
+  sunBtn.addEventListener('click', () => setTheme('light'));
+  moonBtn.addEventListener('click', () => setTheme('dark'));
+});
+</script>
+
+  <script>
+function switchTab(tabName) {
+  // Hide all tab content and remove 'active' class
+  document.querySelectorAll('.tab-content').forEach(tab => {
+    tab.classList.remove('active');
+    tab.style.display = 'none';
+  });
+
+  // Remove active class from all tab buttons
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  // Show selected tab content
+  const activeTab = document.getElementById('tab-' + tabName);
+  activeTab.style.display = 'block';
+  activeTab.classList.add('active');
+
+  // Add active class to clicked button
+  document.querySelector('.' + tabName).classList.add('active');
+
+  // Toggle "inactive" class on home tab
+  const homeTab = document.getElementById('tab-home');
+  if (tabName !== 'home') {
+    homeTab.classList.add('inactive-home');
+  } else {
+    homeTab.classList.remove('inactive-home');
+  }
+
+  // Toggle "inactive" class on contact tab
+  const contactTab = document.getElementById('tab-contact');
+  if (tabName !== 'contact') {
+    contactTab.classList.add('inactive-contact');
+  } else {
+    contactTab.classList.remove('inactive-contact');
+  }
+}
+</script>
+</body>
+</html>
