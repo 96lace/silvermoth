@@ -119,14 +119,6 @@
   <!-- Home Page Content -->
   <div id="everything" style="display: none;">
 
-    <div id="themeModal" class="theme-modal">
-    <div class="theme-box">
-      <p>would you like to switch to light mode?</p>
-      <button onclick="setTheme('light')">yes</button>
-      <button onclick="setTheme('dark')">no</button>
-    </div>
-  </div>
-
     <div id="homepage-scanlines"></div>
    <div id="background-image-light">
     <img src="https://i.pinimg.com/1200x/dd/0e/c4/dd0ec421552be8130f4fb098505e4f19.jpg">
@@ -217,16 +209,14 @@
          <div class="musicbutton">
           music ☆
         </div>
-         <div id="theme-toggle" style="position: absolute; margin-left: 2450px; z-index: 50;">
+         <div id="theme-toggle" style="position: fixed; bottom: -2px; right: 24px; z-index: 50;">
             <img id="sun-btn" src="https://files.catbox.moe/altuc2.png" alt="Switch to light mode" style="width: 32px; cursor: pointer; display: none; filter:brightness(3)">
             <img id="moon-btn" src="https://files.catbox.moe/r3blgb.png" alt="Switch to dark mode" style="width: 32px; cursor: pointer; display: none; filter:brightness(.8)">
           </div>
-        <div class="dividerpart">
-        </div>
       </div>
     </div>
   </div>
-  <div class="homepageapps">
+  <div class="homepageapps" style="position: fixed; left: -150px !important; top: 150px;">
     <div class="homelabels">
       <p id="terminalapp1">
         terminal v.093
@@ -627,13 +617,6 @@ window.addEventListener('DOMContentLoaded', () => {
     themeLink.href = 'home.css';
     sunBtn.style.display = 'none';
     moonBtn.style.display = 'inline';
-  }
-
-  // Show modal if no theme selected yet
-  if (!savedTheme) {
-    setTimeout(() => {
-      document.getElementById('themeModal').style.display = 'flex';
-    }, 1500);
   }
 
   // Toggle theme via buttons

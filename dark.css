@@ -157,10 +157,7 @@ a {
   color: inherit;      
 }
 
-.homepageapps{
-    position: fixed;
-    z-index: 10;
-}
+
 
 
 .window-header {
@@ -618,11 +615,6 @@ a {
     background-color: #2b2b2b;
      box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.6);
     left: 2440px;
-}
-
-.homepageapps{
-    margin-top: 50px;
-    margin-left: 50px;
 }
 
 .homelabels{
