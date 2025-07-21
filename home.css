@@ -1214,6 +1214,9 @@ html {
     body{
         background-size: 100% !important;
     }
+      .homepageapps{
+        margin-left: 200px;
+    }
 }
 
 @media screen and (min-width: 2500px) and (orientation: landscape){
