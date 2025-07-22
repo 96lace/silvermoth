@@ -28,24 +28,16 @@
     src: url('Helvetica-Oblique.ttf');
 }
 
-.pc{
-    transform: scale(.4);
-    position: fixed;
-    top: 50px;
-    left: 280px;
-    filter: drop-shadow(0 0 20px rgb(255, 255, 255));
-}
-
 #typing-container {
-    font-family: monospace;
-    color: white;
-    font-size: 24px;
-    line-height: 35px;
-    text-align: center;
-    position: fixed;
-    top: 820px;
-    left: 1130px;
-    width: 200px;
+  font-family: monospace;
+  color: white;
+  font-size: 24px;
+  line-height: 35px;
+  text-align: center;
+  position: fixed;
+  top: 820px;
+  left: 113px;
+  width: 200px;
 }
 
 #cursor {
