@@ -37,15 +37,15 @@
 }
 
 #typing-container {
-  font-family: monospace;
-  color: white;
-  font-size: 24px;
-  line-height: 35px;
-  text-align: center;
-  position: fixed;
-  top: 820px;
-  left: 1130px;
-  width: 200px;
+    font-family: monospace;
+    color: white;
+    font-size: 24px;
+    line-height: 35px;
+    text-align: center;
+    position: fixed;
+    top: 820px;
+    left: 1130px;
+    width: 200px;
 }
 
 #cursor {
