@@ -29,9 +29,9 @@
 }
 
 .pc {
-  position: absolute;
+  position: fixed;
   top: 35%;
-  left: 50%;
+  left: 500px;
   transform: translate(-50%, -50%);
   max-width: 80%;
   height: auto;
