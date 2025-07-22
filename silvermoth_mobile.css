@@ -28,6 +28,10 @@
     src: url('Helvetica-Oblique.ttf');
 }
 
+#everything2{
+    transform: scale(3);
+}
+
 .pc {
   position: absolute;
   top: 35%;
