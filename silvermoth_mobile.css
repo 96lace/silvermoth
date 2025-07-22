@@ -36,14 +36,6 @@
     filter: drop-shadow(0 0 20px rgb(255, 255, 255));
 }
 
-.pc img {
-    height: auto;
-    margin-top: -190px;
-    margin-left: -140px;
-    transform: scale(1.1);
-}
-
-
 #typing-container {
   font-family: monospace;
   color: white;
