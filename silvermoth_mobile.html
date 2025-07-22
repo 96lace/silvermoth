@@ -35,12 +35,68 @@
     <div class="pc" 
     style="transform: scale(0.3);
            position: fixed;
-           top: -200px;
+           top: -240px;
            left: -744px;"
     >
       <img src="https://files.catbox.moe/5sfwpr.gif">
     </div>
   </div>
+
+  <div id="typing-container"
+  style="
+  position: fixed;
+  font-family: monospace;
+  color: white;
+  font-size: 18px;
+  line-height: 35px;
+  text-align: center;
+  width: 240px;
+  top: 460px;
+  left: 90px;
+">
+    <span id="typing"></span><span id="cursor">┃</span>
+  </div>
+
+  <audio id="click-sound" src="enter.mp3" preload="auto"></audio>
+  <audio id="type-sound" src="type2.mp3" preload="auto"></audio>
+
+
+    <script>
+    const preText = "silvermoth.org\n\n";
+    const preText2 = "is currently not mobile-friendly, please return on computer ☹.";
+    const typingElement = document.getElementById("typing");
+    const typeSound = document.getElementById("type-sound");
+
+    let i = 0;
+
+    function typePreText() {
+    if (i < preText.length) {
+    typingElement.textContent += preText[i];
+    i++;
+    setTimeout(typePreText, 100);
+    } else {
+    i = 0; // Reset i for the next string
+    typePreText2();
+    }
+    }
+
+    function typePreText2() {
+    if (i < preText2.length) {
+    typingElement.textContent += preText2[i];
+    i++;
+    setTimeout(typePreText2, 100); // ← fixed here
+    }
+    }
+
+    window.addEventListener("load", () => {
+    // Play typing sound once
+    typeSound.currentTime = 0;
+    typeSound.play().catch(() => {});
+    setTimeout(() => {
+    typePreText();
+    }, 400); // slight delay for better sync with sound
+    });
+  </script>
 
    
 </body>
