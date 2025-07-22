@@ -37,11 +37,10 @@
 }
 
 .pc img {
-  max-width: 80%;
   height: auto;
-  margin-top: 300px;
-  margin-left: 780px;
-  transform: scale(2);
+  margin-top: -90px;
+  margin-left: 10px;
+  transform: scale(1.1);
 }
 
 #typing-container {
