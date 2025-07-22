@@ -29,7 +29,8 @@
 }
 
 #everything2{
-    transform: scale(3);
+  position: fixed;
+  left: 500px;
 }
 
 .pc {
