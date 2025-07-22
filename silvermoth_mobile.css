@@ -37,25 +37,24 @@
 }
 
 .pc img {
-  height: auto;
-  margin-top: -90px;
-  margin-left: 10px;
-  transform: scale(1.1);
+    height: auto;
+    margin-top: -190px;
+    margin-left: -140px;
+    transform: scale(1.1);
 }
 
+
 #typing-container {
-  margin: 5vh auto 0;
-  font-size: 9vw; /* Scales with screen size */
-    width: 240px;
-  line-height: 1.5;
-   transform: scale(1.4);
-   font-family: monospace;
+  font-family: monospace;
   color: white;
   font-size: 24px;
-    text-align: center;
-     left: 220px;
-    top: 900px;
-    position: fixed;
+  line-height: 35px;
+  text-align: center;
+  position: fixed;
+  top: 980px;
+  left: 220px;
+  width: 240px;
+  transform: scale(1.4);
 }
 
 #cursor {
