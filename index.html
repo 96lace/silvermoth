@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, follow" />  
+   <script>
+  if (/Mobile|Windows Phone|Lumia|Android|iPhone|iPod|Blackberry|PlayBook|BB10|Opera Mini|\bCrMo\/|Opera Mobi/i.test(navigator.userAgent)) {
+    window.location.replace("silvermoth_mobile.html");
+  }
+</script>
   <title>﹖</title>
   <link rel="shortcut icon" type="image/gif" href="">
 
@@ -14,18 +21,6 @@
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap"
     rel="stylesheet"
   />
-
-  <script>
-     window.onload = function () {
-      updateClock();
-      setInterval(updateClock, 1000);
-
-      // Mobile redirect
-      if (navigator.userAgent.match(/Mobile|Windows Phone|Lumia|Android|iPhone|iPod|Blackberry|PlayBook|BB10|Opera Mini|\bCrMo\/|Opera Mobi/i)) {
-        location.replace("silvermoth_mobile.html");
-      }
-    };
-  </script>
 </head>
 
 <body oncontextmenu="return false" ondragstart="return false">
