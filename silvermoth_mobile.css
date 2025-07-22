@@ -28,10 +28,6 @@
     src: url('Helvetica-Oblique.ttf');
 }
 
-#everything2{
-  position: fixed;
-  left: 500px;
-}
 
 .pc {
   position: absolute;
@@ -42,13 +38,6 @@
   height: auto;
   display: block;
   z-index: 10;
-}
-
-.pc img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transform: scale(3)
 }
 
 #typing-container {
