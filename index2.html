@@ -65,13 +65,13 @@
       if (dt) dt.innerText = output;
     }
 
-    window.onload = function () {
+     window.onload = function () {
       updateClock();
       setInterval(updateClock, 1000);
 
       // Mobile redirect
       if (navigator.userAgent.match(/Mobile|Windows Phone|Lumia|Android|iPhone|iPod|Blackberry|PlayBook|BB10|Opera Mini|\bCrMo\/|Opera Mobi/i)) {
-        location.replace("silvermoth/mobile.html");
+        location.replace("silvermoth_mobile.html");
       }
     };
   </script>

@@ -7,7 +7,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 
-  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="silvermoth_mobile.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -42,13 +42,12 @@
   </div>
 
    <audio id="click-sound" src="enter.mp3" preload="auto"></audio>
-   <audio id="type-sound" src="type.mp3" preload="auto"></audio>
+   <audio id="type-sound" src="type2.mp3" preload="auto"></audio>
 
  <script>
   const preText = "silvermoth.org\n\n";
-  const linkText = "enter?";
+  const preText2 = "currently not mobile-friendly, please return on computer ☹.";
   const typingElement = document.getElementById("typing");
-  const clickSound = document.getElementById("click-sound");
   const typeSound = document.getElementById("type-sound");
 
   let i = 0;
@@ -59,38 +58,17 @@
       i++;
       setTimeout(typePreText, 100);
     } else {
-      typeLinkText();
+      i = 0; // Reset i for the next string
+      typePreText2();
     }
   }
 
-  function typeLinkText() {
-    const link = document.createElement("a");
-    link.href = "index2.html";
-    link.id = "enter-link";
-    link.style.color = "inherit";
-    link.style.textDecoration = "none";
-
-    typingElement.appendChild(link);
-
-    let j = 0;
-    function typeLinkChar() {
-      if (j < linkText.length) {
-        link.textContent += linkText[j];
-        j++;
-        setTimeout(typeLinkChar, 100);
-      } else {
-        link.addEventListener("click", function (e) {
-          e.preventDefault();
-          clickSound.currentTime = 0;
-          clickSound.play().catch(() => {});
-          setTimeout(() => {
-            window.location.href = link.href;
-          }, 1000);
-        });
-      }
+  function typePreText2() {
+    if (i < preText2.length) {
+      typingElement.textContent += preText2[i];
+      i++;
+      setTimeout(typePreText2, 100); // ← fixed here
     }
-
-    typeLinkChar();
   }
 
   window.addEventListener("load", () => {
