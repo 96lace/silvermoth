@@ -29,10 +29,10 @@
 }
 
 .pc{
-    transform: scale(.4);
+    transform: scale(.5);
     position: fixed;
-    top: -80px;
-    left: -630px;
+    top: 120px;
+    left: -600px;
     filter: drop-shadow(0 0 20px rgb(255, 255, 255));
 }
 
@@ -43,10 +43,10 @@
   line-height: 35px;
   text-align: center;
   position: fixed;
-  top: 720px;
-  left: 200px;
+  top: 980px;
+  left: 220px;
   width: 240px;
-  transform: scale(1.2);
+  transform: scale(1.4);
 }
 
 #cursor {
